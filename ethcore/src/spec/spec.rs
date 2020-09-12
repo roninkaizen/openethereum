@@ -948,7 +948,7 @@ impl Spec {
     /// initialize genesis epoch data, using in-memory database for
     /// constructor.
     pub fn genesis_epoch_data(&self) -> Result<Vec<u8>, String> {
-        use types::transaction::{Action, Transaction};
+        use types::transaction::{Action, Transaction, TypedTransaction};
 
         let genesis = self.genesis_header();
 
@@ -975,14 +975,14 @@ impl Spec {
             };
 
             let from = Address::default();
-            let tx = Transaction {
+            let tx = TypedTransaction::Legacy(Transaction {
                 nonce: self.engine.account_start_nonce(0),
                 action: Action::Call(a),
                 gas: U256::max_value(),
                 gas_price: U256::default(),
                 value: U256::default(),
                 data: d,
-            }
+            })
             .fake_sign(from);
 
             let res = ::state::prove_transaction_virtual(
