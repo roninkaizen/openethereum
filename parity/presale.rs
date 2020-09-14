@@ -14,10 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity Ethereum.  If not, see <http://www.gnu.org/licenses/>.
 
+use crate::{
+    helpers::{password_from_file, password_prompt},
+    params::SpecType,
+};
 use ethkey::Password;
 use ethstore::PresaleWallet;
-use helpers::{password_from_file, password_prompt};
-use params::SpecType;
 use std::num::NonZeroU32;
 
 #[derive(Debug, PartialEq)]

@@ -21,10 +21,24 @@ use std::{
     time::{Duration, Instant},
 };
 
-use account_utils;
+use crate::{
+    account_utils,
+    cache::CacheConfig,
+    db,
+    helpers::{execute_upgrades, passwords_from_files, to_client_config},
+    informant::{FullNodeInformantData, Informant},
+    metrics::{start_prometheus_metrics, MetricsConfiguration},
+    miner::{external::ExternalMiner, work_notify::WorkPoster},
+    modules,
+    params::{
+        fatdb_switch_to_bool, mode_switch_to_bool, tracing_switch_to_bool, AccountsConfig,
+        GasPricerConfig, MinerExtras, Pruning, SpecType, Switch,
+    },
+    rpc, rpc_apis, secretstore, signer,
+    user_defaults::UserDefaults,
+};
 use ansi_term::Colour;
-use cache::CacheConfig;
-use db;
+
 use dir::{DatabaseDirectories, Directories};
 use ethcore::{
     client::{BlockChainClient, BlockInfo, Client, DatabaseCompactionProfile, Mode, VMType},
@@ -34,30 +48,16 @@ use ethcore::{
 };
 use ethcore_logger::{Config as LogConfig, RotatingLogger};
 use ethcore_service::ClientService;
-use helpers::{execute_upgrades, passwords_from_files, to_client_config};
-use informant::{FullNodeInformantData, Informant};
 use journaldb::Algorithm;
 use jsonrpc_core;
-use metrics::{start_prometheus_metrics, MetricsConfiguration};
-use miner::{external::ExternalMiner, work_notify::WorkPoster};
-use modules;
 use node_filter::NodeFilter;
-use params::{
-    fatdb_switch_to_bool, mode_switch_to_bool, tracing_switch_to_bool, AccountsConfig,
-    GasPricerConfig, MinerExtras, Pruning, SpecType, Switch,
-};
 use parity_rpc::{
     informant, is_major_importing, FutureOutput, FutureResponse, FutureResult, Metadata,
     NetworkSettings, Origin, PubSubSession,
 };
 use parity_runtime::Runtime;
 use parity_version::version;
-use rpc;
-use rpc_apis;
-use secretstore;
-use signer;
 use sync::{self, SyncConfig};
-use user_defaults::UserDefaults;
 
 // how often to take periodic snapshots.
 const SNAPSHOT_PERIOD: u64 = 5000;

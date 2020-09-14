@@ -18,7 +18,7 @@
 
 use std::{fs, sync::Arc};
 
-use blockchain::BlockProvider;
+use crate::blockchain::BlockProvider;
 use client::{BlockInfo, Client, ClientConfig, ImportBlock};
 use snapshot::{
     chunk_secondary, chunk_state,

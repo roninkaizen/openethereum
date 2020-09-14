@@ -35,7 +35,7 @@ pub struct Account {
 
 #[cfg(test)]
 mod tests {
-    use blockchain::account::Account;
+    use crate::blockchain::account::Account;
     use serde_json;
 
     #[test]

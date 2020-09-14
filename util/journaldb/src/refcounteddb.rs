@@ -28,7 +28,7 @@ use hash_db::HashDB;
 use heapsize::HeapSizeOf;
 use keccak_hasher::KeccakHasher;
 use kvdb::{DBTransaction, DBValue, KeyValueDB};
-use memory_db::MemoryDB;
+use memory_db_util::MemoryDB;
 use overlaydb::OverlayDB;
 use rlp::{decode, encode};
 use util::{DatabaseKey, DatabaseValueRef, DatabaseValueView};

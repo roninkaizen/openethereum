@@ -33,7 +33,7 @@ use rlp::Rlp;
 use triehash::ordered_trie_root;
 use unexpected::{Mismatch, OutOfBounds};
 
-use blockchain::*;
+use crate::blockchain::*;
 use call_contract::CallContract;
 use client::BlockInfo;
 use engines::{EthEngine, MAX_UNCLE_AGE};
@@ -496,7 +496,7 @@ fn verify_block_integrity(block: &Unverified) -> Result<(), Error> {
 mod tests {
     use super::*;
 
-    use blockchain::{BlockDetails, BlockReceipts, TransactionAddress};
+    use crate::blockchain::{BlockDetails, BlockReceipts, TransactionAddress};
     use engines::EthEngine;
     use error::{BlockError::*, ErrorKind};
     use ethereum_types::{BloomRef, H256, U256};

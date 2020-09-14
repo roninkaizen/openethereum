@@ -22,8 +22,8 @@ extern crate trie_standardmap;
 use hash::KECCAK_NULL_RLP;
 use std::sync::Arc;
 
+use crate::blockchain::{BlockChain, BlockChainDB};
 use account_db::AccountDBMut;
-use blockchain::{BlockChain, BlockChainDB};
 use client::{ChainInfo, Client};
 use engines::EthEngine;
 use snapshot::{

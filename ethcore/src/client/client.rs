@@ -27,7 +27,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-use blockchain::{
+use crate::blockchain::{
     BlockChain, BlockChainDB, BlockNumberKey, BlockProvider, BlockReceipts, ExtrasInsert,
     ImportRoute, TransactionAddress, TreeRoute,
 };
@@ -97,7 +97,7 @@ use verification::{
 };
 use vm::Schedule;
 // re-export
-pub use blockchain::CacheSize as BlockChainCacheSize;
+pub use crate::blockchain::CacheSize as BlockChainCacheSize;
 use db::{keys::BlockDetails, Readable, Writable};
 pub use types::{block_status::BlockStatus, blockchain_info::BlockChainInfo};
 pub use verification::QueueInfo as BlockQueueInfo;
@@ -3339,7 +3339,7 @@ impl PrometheusMetrics for Client {
 
 #[cfg(test)]
 mod tests {
-    use blockchain::{BlockProvider, ExtrasInsert};
+    use crate::blockchain::{BlockProvider, ExtrasInsert};
     use spec::Spec;
     use test_helpers::generate_dummy_client_with_spec_and_data;
 

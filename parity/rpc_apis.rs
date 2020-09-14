@@ -18,7 +18,7 @@ use std::{cmp::PartialEq, collections::HashSet, str::FromStr, sync::Arc};
 
 pub use parity_rpc::signer::SignerService;
 
-use account_utils::{self, AccountProvider};
+use crate::account_utils::{self, AccountProvider};
 use ethcore::{client::Client, miner::Miner, snapshot::SnapshotService};
 use ethcore_logger::RotatingLogger;
 use fetch::Client as FetchClient;

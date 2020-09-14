@@ -21,7 +21,7 @@ use std::sync::Arc;
 use engines::{EpochVerifier, EthEngine};
 use machine::EthereumMachine;
 
-use blockchain::BlockChain;
+use crate::blockchain::BlockChain;
 use parking_lot::RwLock;
 use rand::Rng;
 use types::header::Header;

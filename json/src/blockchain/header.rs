@@ -64,7 +64,7 @@ pub struct Header {
 
 #[cfg(test)]
 mod tests {
-    use blockchain::header::Header;
+    use crate::blockchain::header::Header;
     use serde_json;
 
     #[test]

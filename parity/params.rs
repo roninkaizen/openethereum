@@ -16,6 +16,7 @@
 
 use std::{collections::HashSet, fmt, fs, num::NonZeroU32, str, time::Duration};
 
+use crate::user_defaults::UserDefaults;
 use ethcore::{
     client::Mode,
     ethereum,
@@ -30,7 +31,6 @@ use miner::{
 };
 use parity_runtime::Executor;
 use parity_version::version_data;
-use user_defaults::UserDefaults;
 
 use crate::configuration;
 
@@ -388,8 +388,8 @@ pub fn mode_switch_to_bool(
 #[cfg(test)]
 mod tests {
     use super::{tracing_switch_to_bool, Pruning, ResealPolicy, SpecType, Switch};
+    use crate::user_defaults::UserDefaults;
     use journaldb::Algorithm;
-    use user_defaults::UserDefaults;
 
     #[test]
     fn test_spec_type_parsing() {

@@ -14,8 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity Ethereum.  If not, see <http://www.gnu.org/licenses/>.
 
-use cache::CacheConfig;
-use db::migrate;
+use crate::{
+    cache::CacheConfig,
+    db::migrate,
+    upgrade::{upgrade, upgrade_data_paths},
+};
 use dir::{helpers::replace_home, DatabaseDirectories};
 use ethcore::{
     client::{BlockId, ClientConfig, DatabaseCompactionProfile, Mode, VMType, VerifierType},
@@ -33,7 +36,6 @@ use std::{
     time::Duration,
 };
 use sync::{self, validate_node_url};
-use upgrade::{upgrade, upgrade_data_paths};
 
 pub fn to_duration(s: &str) -> Result<Duration, String> {
     to_seconds(s).map(Duration::from_secs)

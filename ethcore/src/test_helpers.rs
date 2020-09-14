@@ -18,7 +18,7 @@
 
 use std::{fs, io, path::Path, sync::Arc};
 
-use blockchain::{
+use crate::blockchain::{
     BlockChain, BlockChainDB, BlockChainDBHandler, Config as BlockChainConfig, ExtrasInsert,
 };
 use blooms_db;

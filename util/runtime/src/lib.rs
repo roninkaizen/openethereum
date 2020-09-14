@@ -17,9 +17,11 @@
 //! Tokio Runtime wrapper.
 
 pub extern crate futures;
+extern crate futures03;
 pub extern crate tokio;
 
 use futures::{future, Future, IntoFuture};
+use futures03::{Future as Future03, FutureExt as FutureExt03, TryFutureExt as TryFutureExt03};
 use std::{
     fmt,
     sync::mpsc,
@@ -30,7 +32,6 @@ pub use tokio::{
     runtime::{Builder as TokioRuntimeBuilder, Runtime as TokioRuntime, TaskExecutor},
     timer::Delay,
 };
-
 /// Runtime for futures.
 ///
 /// Runs in a separate thread.
@@ -186,6 +187,25 @@ impl Executor {
                 thread::spawn(move || {
                     let _ = r.into_future().wait();
                 });
+            }
+        }
+    }
+
+    /// spawns 0.3 feature
+    pub fn spawn_std<F>(&self, f: F)
+    where
+        F: Future03<Output = Result<(), ()>> + Send + 'static + Sized,
+    {
+        let fc = f.boxed().compat();
+        match &self.inner {
+            Mode::Tokio(executor) => {
+                let _ = executor.spawn(fc);
+            }
+            Mode::Sync => {
+                let _ = fc.wait();
+            }
+            Mode::ThreadPerFuture => {
+                thread::spawn(move || fc.wait());
             }
         }
     }

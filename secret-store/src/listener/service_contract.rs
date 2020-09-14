@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity Ethereum.  If not, see <http://www.gnu.org/licenses/>.
 
+use crate::helpers::{get_confirmed_block_hash, REQUEST_CONFIRMATIONS_REQUIRED};
 use bytes::Bytes;
 use call_contract::CallContract;
 use common_types::filter::Filter;
@@ -22,7 +23,6 @@ use ethcore::client::{BlockChainClient, BlockId, Client};
 use ethereum_types::{Address, H256, U256};
 use ethkey::{public_to_address, Public};
 use hash::keccak;
-use helpers::{get_confirmed_block_hash, REQUEST_CONFIRMATIONS_REQUIRED};
 use listener::{service_contract_listener::ServiceTask, ApiMask};
 use parking_lot::RwLock;
 use std::sync::Arc;

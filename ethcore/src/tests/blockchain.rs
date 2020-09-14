@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity Ethereum.  If not, see <http://www.gnu.org/licenses/>.
 
-use blockchain::BlockProvider;
+use crate::blockchain::BlockProvider;
 
 use test_helpers::{
     generate_dummy_blockchain, generate_dummy_blockchain_with_extra,

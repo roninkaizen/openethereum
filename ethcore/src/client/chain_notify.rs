@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity Ethereum.  If not, see <http://www.gnu.org/licenses/>.
 
-use blockchain::ImportRoute;
+use crate::blockchain::ImportRoute;
 use bytes::Bytes;
 use ethereum_types::{H256, U256};
 use std::{collections::HashMap, time::Duration};

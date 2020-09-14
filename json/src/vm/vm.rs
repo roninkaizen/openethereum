@@ -16,7 +16,7 @@
 
 //! Vm execution env.
 
-use blockchain::State;
+use crate::blockchain::State;
 use bytes::Bytes;
 use hash::H256;
 use uint::Uint;

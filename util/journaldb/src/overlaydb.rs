@@ -27,7 +27,7 @@ use ethereum_types::H256;
 use hash_db::HashDB;
 use keccak_hasher::KeccakHasher;
 use kvdb::{DBTransaction, DBValue, KeyValueDB};
-use memory_db::*;
+use memory_db_util::*;
 use rlp::{decode, encode, Decodable, DecoderError, Encodable, Rlp, RlpStream};
 
 /// Implementation of the `HashDB` trait for a disk-backed database with a memory overlay.

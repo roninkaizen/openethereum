@@ -24,7 +24,7 @@ use std::{
     },
 };
 
-use blockchain::{BlockReceipts, TreeRoute};
+use crate::blockchain::{BlockReceipts, TreeRoute};
 use bytes::Bytes;
 use db::{COL_STATE, NUM_COLUMNS};
 use ethcore_miner::pool::VerifiedTransaction;

@@ -16,7 +16,7 @@
 
 //! Blockchain deserialization.
 
-use blockchain::{block::Block, header::Header, state::State};
+use crate::blockchain::{block::Block, header::Header, state::State};
 use bytes::Bytes;
 use hash::H256;
 use spec::{Ethereum, ForkSpec, Genesis, Seal};
@@ -93,7 +93,7 @@ impl BlockChain {
 
 #[cfg(test)]
 mod tests {
-    use blockchain::blockchain::BlockChain;
+    use crate::blockchain::blockchain::BlockChain;
     use serde_json;
 
     #[test]

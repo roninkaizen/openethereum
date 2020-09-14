@@ -23,7 +23,7 @@ use std::{
 };
 
 use super::{
-    error_key_already_exists, error_negatively_reference_hash, memory_db::*, LATEST_ERA_KEY,
+    error_key_already_exists, error_negatively_reference_hash, memory_db_util::*, LATEST_ERA_KEY,
 };
 use ethereum_types::H256;
 use hash_db::HashDB;

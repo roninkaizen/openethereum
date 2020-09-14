@@ -25,7 +25,7 @@ extern crate fastmap;
 extern crate hash_db;
 extern crate keccak_hasher;
 extern crate kvdb;
-extern crate memory_db;
+extern crate memory_db_util;
 extern crate parity_bytes as bytes;
 extern crate parking_lot;
 extern crate rlp;
@@ -177,8 +177,8 @@ fn error_negatively_reference_hash(hash: &ethereum_types::H256) -> io::Error {
     )
 }
 
-pub fn new_memory_db() -> memory_db::MemoryDB<keccak_hasher::KeccakHasher, kvdb::DBValue> {
-    memory_db::MemoryDB::from_null_node(&rlp::NULL_RLP, rlp::NULL_RLP.as_ref().into())
+pub fn new_memory_db() -> memory_db_util::MemoryDB<keccak_hasher::KeccakHasher, kvdb::DBValue> {
+    memory_db_util::MemoryDB::from_null_node(&rlp::NULL_RLP, rlp::NULL_RLP.as_ref().into())
 }
 
 #[cfg(test)]

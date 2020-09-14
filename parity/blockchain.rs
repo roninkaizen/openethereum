@@ -16,10 +16,17 @@
 
 use std::{fs, io, sync::Arc, time::Instant};
 
+use crate::{
+    cache::CacheConfig,
+    db,
+    helpers::{execute_upgrades, to_client_config},
+    informant::{FullNodeInformantData, Informant, MillisecondDuration},
+    params::{fatdb_switch_to_bool, tracing_switch_to_bool, Pruning, SpecType, Switch},
+    user_defaults::UserDefaults,
+};
+
 use ansi_term::Colour;
 use bytes::ToPretty;
-use cache::CacheConfig;
-use db;
 use dir::Directories;
 use ethcore::{
     client::{
@@ -32,11 +39,7 @@ use ethcore::{
 use ethcore_service::ClientService;
 use ethereum_types::{Address, H256, U256};
 use hash::{keccak, KECCAK_NULL_RLP};
-use helpers::{execute_upgrades, to_client_config};
-use informant::{FullNodeInformantData, Informant, MillisecondDuration};
-use params::{fatdb_switch_to_bool, tracing_switch_to_bool, Pruning, SpecType, Switch};
 use types::data_format::DataFormat;
-use user_defaults::UserDefaults;
 
 #[derive(Debug, PartialEq)]
 pub enum BlockchainCmd {

@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity Ethereum.  If not, see <http://www.gnu.org/licenses/>.
 
-use account_utils::AccountProvider;
+use crate::account_utils::AccountProvider;
 use dir::{default_data_path, helpers::replace_home};
 use ethcore::{client::Client, miner::Miner};
 use ethereum_types::Address;
@@ -119,8 +119,8 @@ mod server {
 #[cfg(feature = "secretstore")]
 mod server {
     use super::{Configuration, ContractAddress, Dependencies, Executor, NodeSecretKey};
+    use crate::db;
     use ansi_term::Colour::{Red, White};
-    use db;
     use ethcore_secretstore;
     use ethkey::KeyPair;
     use std::sync::Arc;

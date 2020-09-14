@@ -31,7 +31,7 @@ use hash_db::{AsHashDB, HashDB};
 use journaldb::AsKeyedHashDB;
 use keccak_hasher::KeccakHasher;
 use kvdb::DBValue;
-use memory_db::MemoryDB;
+use memory_db_util::MemoryDB;
 use parking_lot::Mutex;
 use state::Account;
 

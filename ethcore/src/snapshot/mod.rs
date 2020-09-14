@@ -29,8 +29,8 @@ use std::{
     },
 };
 
+use crate::blockchain::{BlockChain, BlockProvider};
 use account_db::{AccountDB, AccountDBMut};
-use blockchain::{BlockChain, BlockProvider};
 use engines::EthEngine;
 use types::{header::Header, ids::BlockId};
 

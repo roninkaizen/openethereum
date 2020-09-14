@@ -22,5 +22,5 @@ pub mod test;
 pub mod transaction;
 
 pub use self::{log::Log, state::State, test::Test, transaction::Transaction};
-pub use blockchain::State as AccountState;
+pub use crate::blockchain::State as AccountState;
 pub use vm::Env;

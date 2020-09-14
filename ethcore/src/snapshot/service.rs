@@ -34,7 +34,7 @@ use super::{
     MAX_CHUNK_SIZE,
 };
 
-use blockchain::{BlockChain, BlockChainDB, BlockChainDBHandler};
+use crate::blockchain::{BlockChain, BlockChainDB, BlockChainDBHandler};
 use client::{BlockChainClient, BlockInfo, ChainInfo, Client, ClientIoMessage};
 use engines::EthEngine;
 use error::{Error, ErrorKind as SnapshotErrorKind};

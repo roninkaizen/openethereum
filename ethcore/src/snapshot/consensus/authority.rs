@@ -30,7 +30,7 @@ use engines::{EpochTransition, EpochVerifier, EthEngine};
 use machine::EthereumMachine;
 use snapshot::{Error, ManifestData, Progress};
 
-use blockchain::{BlockChain, BlockChainDB, BlockProvider};
+use crate::blockchain::{BlockChain, BlockChainDB, BlockProvider};
 use bytes::Bytes;
 use ethereum_types::{H256, U256};
 use itertools::{Itertools, Position};

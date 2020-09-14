@@ -16,7 +16,7 @@
 
 use std::{collections::BTreeMap, sync::Arc};
 
-use blockchain::{BlockReceipts, TreeRoute};
+use crate::blockchain::{BlockReceipts, TreeRoute};
 use bytes::Bytes;
 use call_contract::{CallContract, RegistryInfo};
 use ethcore_miner::pool::VerifiedTransaction;
