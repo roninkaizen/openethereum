@@ -24,6 +24,7 @@ use std::{
         atomic::{AtomicBool, AtomicI64, Ordering as AtomicOrdering},
         Arc, Weak,
     },
+    thread,
     time::{Duration, Instant},
 };
 
@@ -41,6 +42,7 @@ use itertools::Itertools;
 use kvdb::{DBTransaction, DBValue, KeyValueDB};
 use parking_lot::{Mutex, RwLock};
 use rand::OsRng;
+use rand::Rng;
 use rlp::PayloadInfo;
 use rustc_hex::FromHex;
 use trie::{Trie, TrieFactory, TrieSpec};
@@ -664,13 +666,25 @@ impl Importer {
             },
         );
 
+        //TEST
+        let mut rng = rand::thread_rng();
+
         let is_canon = route.enacted.last().map_or(false, |h| h == hash);
         state.sync_cache(&route.enacted, &route.retracted, is_canon);
+
+        //TEST
+        thread::sleep(Duration::from_millis(rng.gen_range(10, 500)));
         // Final commit to the DB
         client.db.read().key_value().write_buffered(batch);
+        
+        //TEST
+        thread::sleep(Duration::from_millis(rng.gen_range(10, 500)));
         chain.commit();
 
         self.check_epoch_end(&header, &finalized, &chain, client);
+
+        //TEST
+        thread::sleep(Duration::from_millis(rng.gen_range(10, 500)));
 
         client.update_last_hashes(&parent, hash);
 
