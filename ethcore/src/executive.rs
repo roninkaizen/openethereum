@@ -240,7 +240,6 @@ pub struct CallCreateExecutive<'a> {
 }
 
 impl<'a> CallCreateExecutive<'a> {
-
     /// Create a new call executive using substate.
     pub fn new_substate(
         params: &ActionParams,
