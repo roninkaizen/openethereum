@@ -51,7 +51,7 @@ use types::{
     filter::Filter,
     header::{ExtendedHeader, Header},
     log_entry::LocalizedLogEntry,
-    receipt::{LocalizedReceipt, Receipt},
+    receipt::{LocalizedReceipt, TypedReceipt},
     transaction::{
         self, Action, LocalizedTransaction, SignedTransaction, TypedTransaction,
         UnverifiedTransaction,
@@ -690,7 +690,7 @@ impl Importer {
         &self,
         header: &Header,
         block_bytes: &[u8],
-        receipts: &[Receipt],
+        receipts: &[TypedReceipt],
         state_db: &StateDB,
         client: &Client,
     ) -> EthcoreResult<Option<PendingTransition>> {
@@ -3083,7 +3083,7 @@ impl ImportExportBlocks for Client {
 fn transaction_receipt(
     machine: &::machine::EthereumMachine,
     mut tx: LocalizedTransaction,
-    receipt: Receipt,
+    receipt: TypedReceipt,
     prior_gas_used: U256,
     prior_no_of_logs: usize,
 ) -> LocalizedReceipt {
@@ -3092,6 +3092,8 @@ fn transaction_receipt(
     let block_hash = tx.block_hash;
     let block_number = tx.block_number;
     let transaction_index = tx.transaction_index;
+
+    let receipt = receipt.receipt().clone();
 
     LocalizedReceipt {
         from: sender,
@@ -3132,7 +3134,7 @@ fn transaction_receipt(
             })
             .collect(),
         log_bloom: receipt.log_bloom,
-        outcome: receipt.outcome,
+        outcome: receipt.outcome.clone(),
     }
 }
 
@@ -3428,7 +3430,7 @@ mod tests {
         use hash::keccak;
         use types::{
             log_entry::{LocalizedLogEntry, LogEntry},
-            receipt::{LocalizedReceipt, Receipt, TransactionOutcome},
+            receipt::{LegacyReceipt, LocalizedReceipt, TransactionOutcome, TypedReceipt},
             transaction::{Action, LocalizedTransaction, Transaction, TypedTransaction},
         };
 
@@ -3469,12 +3471,12 @@ mod tests {
                 data: vec![],
             },
         ];
-        let receipt = Receipt {
+        let receipt = TypedReceipt::Legacy(LegacyReceipt {
             outcome: TransactionOutcome::StateRoot(state_root),
             gas_used: gas_used,
             log_bloom: Default::default(),
             logs: logs.clone(),
-        };
+        });
 
         // when
         let receipt = transaction_receipt(&machine, transaction, receipt, 5.into(), 1);
