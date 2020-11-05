@@ -321,7 +321,7 @@ impl Handshake {
         let encoded = rlp
             .out()
             .into_iter()
-            .chain(repeat(0).take(rand::thread_rng().gen_range::<usize>(100, 301)))
+            .chain(repeat_with(rand::random).take(rand::thread_rng().gen_range::<usize>(100, 301)))
             .collect::<Vec<_>>();
         let len = (encoded.len() + ECIES_OVERHEAD) as u16;
         let prefix = len.to_be_bytes();
